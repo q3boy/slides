@@ -29,14 +29,14 @@ html
     meta(http-equiv="X-UA-Compatible", content="IE=Edge;chrome=1")
     block head
     +css(href="http://fonts.googleapis.com/css?family=Droid+Sans|Droid+Sans+Mono")
-    +css(href="/src/prettify/prettify.css", disabled)#prettify-link
-    +css(href="/styles/fonts.css",        screen)
-    +css(href="/styles/presentation.css", screen)
-    +css(href="/styles/common.css",       screen)
-    +css(href="/styles/default.css",      screen).theme
-    +css(href="/styles/moon.css",         screen).theme
-    +css(href="/styles/sand.css",         screen).theme
-    +css(href="/styles/sea_wave.css",     screen).theme
+    +css(href="../src/prettify/prettify.css", disabled)#prettify-link
+    +css(href="../styles/fonts.css",        screen)
+    +css(href="../styles/presentation.css", screen)
+    +css(href="../styles/common.css",       screen)
+    +css(href="../styles/default.css",      screen).theme
+    +css(href="../styles/moon.css",         screen).theme
+    +css(href="../styles/sand.css",         screen).theme
+    +css(href="../styles/sea_wave.css",     screen).theme
     style
       body{
         background: -webkit-gradient(linear, left top, left bottom, from(#444), to(black));
@@ -145,8 +145,8 @@ html
                 th 显示帮助信息
                 td 0
 
-    script(src="/src/prettify/prettify.js", onload="prettyPrint();", defer)
-    script(src="/js/utils.js")
+    script(src="../src/prettify/prettify.js", onload="prettyPrint();", defer)
+    script(src="../js/utils.js")
     :coffee
       for node in document.getElementsByClassName('toggle-full-screen')
         node.addEventListener 'click', (e) ->
