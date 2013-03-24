@@ -1,0 +1,196 @@
+extends ../layout
+
+block css
+  style
+    .slide h1{font-size:48pt;}
+    .slide h2{font-size:40pt;}
+    .slide h3{font-size:32pt;}
+    .slide h4{font-size:24pt;}
+    .slide li{font-size:20pt;}
+    .slide p{font-size:24pt;}
+    .slide .box{width:80%;margin:auto;margin-top:50px;text-align:center;}
+    .slide .box p{text-align:left;}
+    .slide .box h3{text-align:left;}
+    .slide .box ul{text-align:left;}
+    .slide .box li{text-align:left; font-size:20pt; line-height:150%}
+    #highlights-honeycomb-tech-selection li {font-size:18pt}
+    /*
+    #brief-dxpfe .box p {font-size:20pt; line-height:130%}
+    #brief-dxpfe .box li {font-size:16pt; line-height:120%}
+    */
+block head
+  title 2013 晋升述职 by 清笃(廖恺)
+
+block landing
+  p(style="font-size:64pt;") 2013 晋升述职 <br/ >
+    em(style="font-size:24pt; margin-left:50px;") by 清笃(廖恺)
+
+block slides
+
+
+  +slide#intro
+    +head 自我介绍
+    +body.middle(data-build)
+      h3 清笃 @ ALI-CDO-DXP-FE
+      h3 2010-02 EDP 架构师
+      h3 2011-12 冰火鸟 PMO
+      h3 2012-10 +DXPFE TL
+
+  +slide#brief.transitionSlide
+    +body.middle
+      h1 工作经历
+
+  +slide#brief-edp
+    +head 工作经历 EDP
+    +body
+      div.box(data-build)
+        img(src="cube.png", alt="数据魔方")
+        div
+          p 先后两版前端框架的设计与部分实现
+          p 中间层服务 (gilder) 的设计与部分实现
+          p 分布式 mysql 集群 (myfox) 的设计与部分实现
+          p 开发/测试/生产环境的规范化
+          p 自动化测试的引入
+
+  +slide#brief-bird
+    +head 工作经历 EDP => CDO
+    +body
+      div.box(data-build)
+        img(src="bird.png", alt="冰火鸟")
+        div
+          h3 担任 PMO 工作
+          p PMO: Project Management Officer
+
+  +slide#brief-dxpfe
+    +head 工作经历 DXP FE
+    +body
+      div.box(data-build)
+        h3 DXP 前端团队 TL
+        div
+          p 带领 DXP 前端团队
+          p 开发规范整理, 开发/测试/生产环境的规范化
+          p 组织技术分享/交流, 提高团队技术能力
+          p 接口业务方与上下游系统, 安排项目开发进度
+          p 相关系统设计与部分核心功能开发
+
+  +slide#reason.transitionSlide
+    +body.middle
+      h1 晋升理由
+
+  +slide#reason-detail
+    +body.middle
+      div.box
+        p 前后台双能, 对 Web 开发的方方面面有深入了解
+        p 对系统设计有自己的见解, 对各种问题能快速提出可行性的方案
+        p 项目经验丰富, 动手能力强, 能说能练
+        p 知识面广, 技术视野开阔, 对新技术抱有极大的热情
+        p 乐于分享, 能很好的带动其他人技术热情
+
+  +slide#highlights.transitionSlide
+    +body.middle
+      h1 技术亮点
+
+  +slide#highlights-bird-detail
+    +head 冰火鸟
+    +body.middle
+      div.box
+        p 把握平台总体设计与技术路线规划
+        p 项目进度与风险控制
+        p 深入各子系统, 参与关键系统设计
+        p 协调/解决项目进行中的各种问题
+
+  +slide#highlights-bird
+    +head 冰火鸟
+    +body.middle
+      div(style="margin-top:80px")
+        img(src="bird-arch.png", alt="冰火鸟总体架构", height="606", width="600").toggle-full-screen
+        div(style="margin-top:-60px") 点击图片全屏查看
+
+  +slide#highlights-honeycomb
+    +body.middle
+      h2 Honeycomb
+
+  +slide#highlights-honeycomb-requirement
+    +head 需求
+    +body.middle
+      div.box
+        p 整体为统一平台, 内部子系统众多
+        p 任务量大, 稳定性要求高
+        p 针对开发人员的富客户端应用
+        p 系统间业务逻辑庞杂, 接口缺乏统一规范
+        p 原有系统经多人转手, 代码质量极差, 且缺乏有效的自动化测试支持
+
+  +slide#highlights-honeycomb-tech-selection
+    +head 选型
+    +body.middle
+      ul.box
+        li 使用 Node.JS 作为开发框架, 并结合使用 CoffeeScript, Jade, Stylus 等技术提高开发效率
+        li 实现静态资源的按需加载功能, 降低资源占用, 改善用户体验
+        li 前后台模块采用统一标准编写, 并通过在 Node.JS 中模拟浏览器行为, 对客户端代码进行测试
+        li 使用 BDD 的开发方式, 并通过 Mocha, Expect.js 等工具进行自动化测试
+        li 通过 middleware 机制, 在保证安全与应用隔离的前提下, 对应用开发提供更多的灵活性
+        li 前端框架与 Web Console 作为服务自带应用形式装载, 降低系统的耦合性与复杂度
+
+  +slide#highlights-honeycomb-mode
+    +head 应用与容器
+    +body.middle
+      img(src="./honeycomb-mode.png", width="371", height="390", alt="Honeycomb 服务模式").toggle-full-screen
+      div 点击图片全屏查看
+
+  +slide#highlights-honeycomb-server
+    +head 服务端设计
+    +body.middle
+      img(src="./honeycomb-backend.png", width="654", height="538", alt="Honeycomb 服务端设计").toggle-full-screen
+      div 点击图片全屏查看
+
+  +slide#highlights-honeycomb-server-feature
+    +body.middle
+      ul.box
+        li 使用 Master - Worker 模式, 充分挖掘多核处理器能力
+        li 完整的服务/应用管理功能, 并提供 Web Console 简化运维工作
+        li 实现应用的热部署, 减少应用升级的服务停止时间
+        li 应用可通过 Extension 配置对 Web Server 功能的灵活定制与扩展
+
+  +slide#highlights-honeycomb-client
+    +head 客户端设计
+    +body.middle
+      img(src="./honeycomb-frontend.png", width="354", height="384", alt="Honeycomb 服务端设计").toggle-full-screen
+      div 点击图片全屏查看
+
+  +slide#highlights-honeycomb-client-feature
+    +body.middle
+      ul.box
+        li QLoader 结合服务端代码, 实现基于语法树解析的按需加载功能
+        li CoffeeScript, Jade, Stylus 等均采用服务端编译, 并使用 LocalStorage 保存所有 Module 静态资源, 加快访问速度
+        li 智能的 Http 请求合并, 提高加载速度
+        li 提供统一的组件库, 提高开发效率
+        li Page, Layout, Component 均可自由的重载, 改写, 提高代码复用度
+
+  +slide#vista.transitionSlide
+    +body.middle
+      h1 展望
+
+  +slide#vista-work
+    +head 工作
+    +body.middle
+      div.box
+        p 推动 Honeycomb 的继续发展
+        p 提高前端团队整体技术能力, 并在人才招聘上投入更多精力, 加快团队成型
+        p 继续跟进冰火鸟项目, 对保证项目的进度与质量做出更多努力
+        p 数据产品的开发
+        p 尝试进行 移动端/客户端 的产品工作
+
+  +slide#vista-personal
+    +head 个人
+    +body.middle
+      div.box
+        p 提高管理能力, 更好的带领 DXP 前端团队
+        p 持续学习, 保持对新技术的热情与敏感度
+        p 积极参加开源社区, 并做出更多贡献
+        p 扩大技术影响力
+
+
+  +slide#thanks.transitionSlide
+    +body.middle
+      h1 Thanks
+

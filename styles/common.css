@@ -268,7 +268,7 @@ video {
   transition: margin 0.2s ease-in-out;
 }
 .sidebar.invisible {
-  margin-left: -400px;
+  margin-left: -600px;
 }
 .sidebar table {
   border-collapse: collapse;

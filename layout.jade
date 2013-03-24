@@ -1,0 +1,170 @@
+!!! 5
+mixin css
+  if attributes.screen !== undefined
+    - delete attributes.screen
+    link(rel="stylesheet", type="text/css", media="screen", attributes)
+  else
+    link(rel="stylesheet", type="text/css", attributes)
+
+mixin head
+  header(attributes)
+    block
+
+mixin body
+  section(attributes)
+    block
+
+mixin note
+  aside.note
+    section
+      block
+
+mixin slide
+  div.slide(attributes)
+    block
+
+html
+  head
+    meta(charset="utf-8")
+    meta(http-equiv="X-UA-Compatible", content="IE=Edge;chrome=1")
+    block head
+    +css(href="http://fonts.googleapis.com/css?family=Droid+Sans|Droid+Sans+Mono")
+    +css(href="/src/prettify/prettify.css", disabled)#prettify-link
+    +css(href="/styles/fonts.css",        screen)
+    +css(href="/styles/presentation.css", screen)
+    +css(href="/styles/common.css",       screen)
+    +css(href="/styles/default.css",      screen).theme
+    +css(href="/styles/moon.css",         screen).theme
+    +css(href="/styles/sand.css",         screen).theme
+    +css(href="/styles/sea_wave.css",     screen).theme
+    style
+      body{
+        background: -webkit-gradient(linear, left top, left bottom, from(#444), to(black));
+      }
+      /*
+      .slide{
+        color: #3f3f3f;
+        text-shadow: white 0px 1px 0px, rgba(0, 0, 0, 0.2) 0 2px 5px;
+        background: white;
+      }
+      */
+    block css
+  body.three-d
+    div#flex-container
+      nav#helpers
+        button#nav-prev.nav-prev(title="Previous slide") &#8701;
+        //- button#slide-no(title="Jump to a random slide") 5
+        button#nav-next.nav-next(title="Next slide") &#8702;
+        menu
+          //- button(type="checkbox", data-command="toc", title="Table of Contents").toc TOC
+          //- button(type="checkbox", data-command="notes", title="View Slide Notes")&#9999;
+          //- button(type="checkbox", data-command="source", title="View slide source")&#8635;
+          button(type="checkbox", data-command="help", title="View Help")?
+      div.slides
+        div#presentation-counter Loading...
+        div#landing-slide.slide
+          section#landing-slide.middle
+            block landing
+            p
+              span(onclick="document.body.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT)", style="cursor:pointer;")
+                span.key f
+                | 开启全屏&nbsp;
+              span#left-init-key.key &rarr;
+              | 继续下一页
+
+        div#controls-slide.slide
+          header 使用说明
+          section: ul
+            li
+              span.key &larr;
+              span.key K
+              | &amp;
+              span.key &rarr;
+              span.key J
+              span.key Space
+              | 进行翻页
+            li
+              span.key ^
+              | /
+              span.key ⌘
+              | +
+              span.key +
+              | /
+              span.key -
+              | 缩放页面
+            //- li
+            //-   span.key S
+            //-   | 查看源代码
+            li
+              span.key T
+              | 切换主题
+            li
+              span.key H
+              | 切换语法高亮主题
+            //- li
+            //-   span.key N
+            //-   | 显示备注信息
+            li
+              span.key 3
+              | 使用 3D 效果
+            li
+              span.key f
+              | 全屏显示
+            li
+              span.key 0
+              | 显示帮助信息
+        block slides
+
+        div#speaker-note.invisible(style="display:none;")
+        aside#help(class="sidebar invisible", style="display:none;")
+          table
+            caption 帮助
+            tbody
+              tr
+                th 翻页操作
+                td &larr;&nbsp;&rarr; / j k
+              //- tr
+              //-   th 查看源码
+              //-   td s
+              tr
+                th 切换主题
+                td t
+              tr
+                th 切换语法高亮主题
+                td h
+              //- tr
+              //-   th 备注信息
+              //-   td n
+              tr
+                th 使用 3D 效果
+                td 3
+              tr
+                th 全屏显示
+                td f
+              tr
+                th 显示帮助信息
+                td 0
+
+    script(src="/src/prettify/prettify.js", onload="prettyPrint();", defer)
+    script(src="/js/utils.js")
+    :coffee
+      for node in document.getElementsByClassName('toggle-full-screen')
+        node.addEventListener 'click', (e) ->
+          if document.webkitIsFullScreen
+            document.webkitCancelFullScreen()
+          else
+            e.target.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT)
+      document.body.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT)
+      document.addEventListener 'keydown', (e) ->
+        switch e.keyCode
+          when 13, 27
+            e.preventDefault()
+            document.webkitCancelFullScreen()
+          when 70
+            if document.webkitIsFullScreen
+              document.webkitCancelFullScreen()
+            else
+              document.body.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT)
+        return
+
+    block script
