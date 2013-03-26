@@ -45,12 +45,14 @@ block slides
     +body
       div.box(data-build)
         img(src="cube.png", alt="数据魔方")
-        div
-          p 先后两版前端框架的设计与部分实现
-          p 中间层服务 (gilder) 的设计与部分实现
-          p 分布式 mysql 集群 (myfox) 的设计与部分实现
-          p 开发/测试/生产环境的规范化
-          p 自动化测试的引入
+        ul(style="margin-top:-40px")
+          li 前端框架
+            ul: li 配置化开发, 组件标准化, 事件代理
+          li 中间层服务 (gilder), 分布式 mysql 集群 (myfox)
+            ul: li 异构数据源的 join, 数据二次加工, 透明的分布式数据库访问
+          li 自动化测试
+            ul: li 引入完整的单元测试, 功能测试方案 (phpunit, selenium)
+          li 开发/测试/生产环境以及发布流程的规范化
 
   +slide#brief-bird
     +head 工作经历 EDP => CDO
@@ -67,11 +69,20 @@ block slides
       div.box(data-build)
         h3 DXP 前端团队 TL
         div
-          p 带领 DXP 前端团队
-          p 开发规范整理, 开发/测试/生产环境的规范化
+          p 带领 DXP 前端团队 (正式5人, 外包3人)
+          p 整理开发规范, 确定技术框架与路线, 规范化开发/测试/生产环境
           p 组织技术分享/交流, 提高团队技术能力
           p 接口业务方与上下游系统, 安排项目开发进度
           p 相关系统设计与部分核心功能开发
+
+  +slide#brief-opensource
+    +head NodeJS技术推广
+    +body
+      div.box(data-build)
+        p 参加QCon, Velocity等大型技术会议并做主题发言
+        p 参与组建 CNodeJS 社区, 并多次组织参加 Node Party 活动
+        p 设计 Node App Engine, 并实现核心的应用沙箱部分功能
+        p 推动公司内 NPM 规范化管理
 
   +slide#reason.transitionSlide
     +body.middle
@@ -79,31 +90,45 @@ block slides
 
   +slide#reason-detail
     +body.middle
-      div.box
-        p 前后台双能, 对 Web 开发的方方面面有深入了解
-        p 对系统设计有自己的见解, 对各种问题能快速提出可行性的方案
-        p 项目经验丰富, 动手能力强, 能说能练
-        p 知识面广, 技术视野开阔, 对新技术抱有极大的热情
-        p 乐于分享, 能很好的带动其他人技术热情
+      ul.box
+        li 有丰富的 Web 系统经验, 前后台双能
+          ul: li 既能实现 Glider/Myfox 这样的纯后台服务, 也能完成魔方前端等客户端产品
+        li 设计能力强, 善于发现问题
+          ul: li 大到冰火鸟, 小到卖家情报, 都能很好的完成设计工作
+        li 技术视野开阔, 对新技术抱有极大的热情
+          ul: li 积极主动的引入 NodeJS/Jade 等新技术, 并努力推动其发展
+        li 乐于分享, 技术带动能力强
+          ul: li 在不同的岗位都能很好的带动同事技术能力的提高, 并通过多种方式推动对新技术的学习和运用
+
 
   +slide#highlights.transitionSlide
     +body.middle
       h1 技术亮点
 
-  +slide#highlights-bird-detail
+  +slide#highlights-bird
     +head 冰火鸟
     +body.middle
-      div.box
-        p 把握平台总体设计与技术路线规划
-        p 项目进度与风险控制
-        p 深入各子系统, 参与关键系统设计
-        p 协调/解决项目进行中的各种问题
+      ul.box
+        li 把握平台总体设计与技术路线规划
+        li 深入各子系统, 参与关键系统设计
+          ul: li 如安全方案, 对外API设计等
+        li 协调/解决项目进行中的各种问题
+          ul: li 改进交付延期, 上下游信息不对称, 推动关键依赖点的开发
+        li 把控项目总体进度与风险控制
+          ul: li 采用冰火鸟大图的形式, 并在发展为 birdman 项目管理系统
 
-  +slide#highlights-bird
+  +slide#highlights-bird-arch
     +head 冰火鸟
     +body.middle
       div(style="margin-top:80px")
         img(src="bird-arch.png", alt="冰火鸟总体架构", height="606", width="600").toggle-full-screen
+        div(style="margin-top:-60px") 点击图片全屏查看
+
+  +slide#highlights-bird-man
+    +head 冰火鸟
+    +body.middle
+      div(style="margin-top:80px")
+        img(src="birdman.png", alt="冰火鸟大图", height="503", width="600").toggle-full-screen
         div(style="margin-top:-60px") 点击图片全屏查看
 
   +slide#highlights-honeycomb
@@ -111,25 +136,29 @@ block slides
       h2 Honeycomb
 
   +slide#highlights-honeycomb-requirement
-    +head 需求
+    +head 需要解决的问题
     +body.middle
-      div.box
-        p 整体为统一平台, 内部子系统众多
-        p 任务量大, 稳定性要求高
-        p 针对开发人员的富客户端应用
-        p 系统间业务逻辑庞杂, 接口缺乏统一规范
-        p 原有系统经多人转手, 代码质量极差, 且缺乏有效的自动化测试支持
+      ul.box
+        li 产品整体复杂度高
+          ul: li 对外需维持平台的统一整体形象, 内部实际由工作流, 元数据中心, DQC, Mosad, CUC 等大量不同系统构成
+        li 快速完成大量业务
+          ul: li 后端各个服务都在持续开发, 对应前端需求量大, 对开发效率要求高
+        li 针对数据开发人员 Web 应用
+          ul: li 产品的用户主要为数据开发人员, 为了改善用户体验提高他们开发效率, 需要大量富客户端功能开发
+        li 原系统先后经手4个不同外包员工开发, 没有任何自动化测试, 代码质量极差.
 
-  +slide#highlights-honeycomb-tech-selection
+  +slide#highlights-honeycomb-tech-selection1
     +head 选型
     +body.middle
       ul.box
-        li 使用 Node.JS 作为开发框架, 并结合使用 CoffeeScript, Jade, Stylus 等技术提高开发效率
-        li 实现静态资源的按需加载功能, 降低资源占用, 改善用户体验
-        li 前后台模块采用统一标准编写, 并通过在 Node.JS 中模拟浏览器行为, 对客户端代码进行测试
-        li 使用 BDD 的开发方式, 并通过 Mocha, Expect.js 等工具进行自动化测试
-        li 通过 middleware 机制, 在保证安全与应用隔离的前提下, 对应用开发提供更多的灵活性
-        li 前端框架与 Web Console 作为服务自带应用形式装载, 降低系统的耦合性与复杂度
+        li 提高开发效率
+          ul: li Node.JS, CoffeeScript, Jade, Stylus
+        li 降低浏览器资源占用与页面加载时间, 改善用户体验
+          ul: li 按需加载, Cache, 资源回收机制
+        li 代码质量保证
+          ul: li BDD, Mocha, Expect.js, jscover, UT/FT
+        li 降低测试成本, 提高测试效率
+          ul: li 通过 jsdom/contextify 等模拟浏览器行为, 使用 Mocha 进行客户端代码进行测试
 
   +slide#highlights-honeycomb-mode
     +head 应用与容器
@@ -147,9 +176,11 @@ block slides
     +body.middle
       ul.box
         li 使用 Master - Worker 模式, 充分挖掘多核处理器能力
-        li 完整的服务/应用管理功能, 并提供 Web Console 简化运维工作
+        li Cli Console &amp; Web Console, 简化运维工作
         li 实现应用的热部署, 减少应用升级的服务停止时间
         li 应用可通过 Extension 配置对 Web Server 功能的灵活定制与扩展
+        li 通过 middleware 机制, 在保证安全与应用隔离的前提下, 对应用开发提供更多的灵活性
+        li web console 与 客户端共用代码作为标准应用加载, 降低耦合度与复杂度
 
   +slide#highlights-honeycomb-client
     +head 客户端设计
@@ -160,11 +191,12 @@ block slides
   +slide#highlights-honeycomb-client-feature
     +body.middle
       ul.box
+        li 完全的面对对象开发, 并通过核心框架实现通用功能
         li QLoader 结合服务端代码, 实现基于语法树解析的按需加载功能
-        li CoffeeScript, Jade, Stylus 等均采用服务端编译, 并使用 LocalStorage 保存所有 Module 静态资源, 加快访问速度
-        li 智能的 Http 请求合并, 提高加载速度
-        li 提供统一的组件库, 提高开发效率
-        li Page, Layout, Component 均可自由的重载, 改写, 提高代码复用度
+        li 静态资源服务端编译, 并使用 LocalStorage 保存在用户浏览器, 加快访问速度
+        li 智能的 Http 合并, 结合请求延时队列, 提高加载速度
+        li 提供统一的共用组件库, 提高开发效率
+        li Page, Layout, Component 均可继承/重载, 结合Jade/Stylus的继承功能, 大幅提高代码复用度
 
   +slide#vista.transitionSlide
     +body.middle
@@ -173,21 +205,28 @@ block slides
   +slide#vista-work
     +head 工作
     +body.middle
-      div.box
-        p 推动 Honeycomb 的继续发展
-        p 提高前端团队整体技术能力, 并在人才招聘上投入更多精力, 加快团队成型
-        p 继续跟进冰火鸟项目, 对保证项目的进度与质量做出更多努力
-        p 尝试进行数据产品, 与移动端/客户端的开发
+      ul.box
+        li 推动 Honeycomb 的继续发展
+          ul: li 改进浏览器兼容性, 提供完整的使用文档, 推动在其他团队的使用, 下半年考虑开源, 并尝试通过业界推广
+        li 加快团队成型
+          ul: li 通过技术分享培训提高前端团队整体技术能力, 并在人才招聘上投入更多精力
+        li 继续跟进冰火鸟项目
+          ul: li 推动API设计与安全方案,
+        li 尝试进行数据产品, 与移动端/客户端的开发
+          ul: li 在云端手机版, IDE plugin for SublimeText/Eclipse
 
   +slide#vista-personal
     +head 个人
     +body.middle
-      div.box
-        p 提高管理能力, 更好的带领 DXP 前端团队
-        p 持续学习, 保持对新技术的热情与敏感度
-        p 积极参加开源社区, 并做出更多贡献
-        p 扩大技术影响力
-
+      ul.box
+        li 提高管理能力, 更好的带领 DXP 前端团队
+          ul: li 参加公司内管理方向培训
+        li 持续学习
+          ul: li 学习 SublimeText/eclipse 插件开发,
+        li 开源贡献
+          ul: li 继续 Node App Engine 的开发, 实现自动负载均衡
+        li CNode 社区
+          ul: li Node Party 组织
 
   +slide#thanks.transitionSlide
     +body.middle
